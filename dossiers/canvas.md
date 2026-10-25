@@ -1,0 +1,62 @@
+# Dossier: Canvas LMS (Instructure)
+Frame stratum: 5.2   Evidence collected: 2026-10-24   Collector: evidence agent, stratum 5.2 (Claude Opus 5.5)
+
+Note on sources: the canvas.instructure.com/doc/api pages opened below carry a banner reading "We have relocated to Instructure Developer Documentation Portal. Please update your bookmarks. This page will automatically redirect after July 1, 2026." Each still served its full content on the access date; quotations are from those served pages.
+
+## Identity
+- "Built in the cloud on open technology, Canvas integrates with 1000+ external tools, giving educators the freedom to compose their ideal teaching and learning environments." (https://www.instructure.com/canvas, accessed 2026-10-24)
+- "The makers of Canvas LMS, Instructure is an education technology company that's obsessed with student success." (https://www.instructure.com/canvas, accessed 2026-10-24)
+- "Instructure provides the industry's most open teaching, learning and credentialing platform." (https://www.instructure.com/partners, accessed 2026-10-24)
+- Self-description as "operating system"/"OS": none found on the pages opened.
+
+## E1 Sequencing / scheduling evidence
+- "Modules are collections of learning materials useful for organizing courses and optionally providing a linear flow through them. Module items can be accessed linearly or sequentially depending on module configuration. Items can be unlocked by various criteria such as reading a page or achieving a minimum score on a quiz. Modules themselves can be unlocked by the completion of other Modules." (https://canvas.instructure.com/doc/api/modules.html, accessed 2026-10-24)
+- Module object fields: "// Whether module items must be unlocked in order "require_sequential_progress": true," and "// IDs of Modules that must be completed before this one is unlocked "prerequisite_module_ids": [121, 122]," (https://canvas.instructure.com/doc/api/modules.html, accessed 2026-10-24)
+- Module item types include external tools: "// the type of object referred to one of 'File', 'Page', 'Discussion', // 'Assignment', 'Quiz', 'SubHeader', 'ExternalUrl', 'ExternalTool'" and "// Completion requirement for this module item "completion_requirement": {"type":"min_score","min_score":10,"completed":true}," (https://canvas.instructure.com/doc/api/modules.html, accessed 2026-10-24)
+- "Get module item sequence ... Given an asset in a course, find the ModuleItem it belongs to, the previous and next Module Items in the course sequence, and also any applicable mastery path rules" (https://canvas.instructure.com/doc/api/modules.html, accessed 2026-10-24)
+- "Mastery Paths allows you to customize learning experiences for students based on performance. You can enable Mastery Paths to automatically assign coursework based on the score achieved for a previous assignment." (https://community.instructure.com/en/kb/articles/660914-how-do-i-use-mastery-paths-in-course-modules, redirected from https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-use-Mastery-Paths-in-course-modules/ta-p/906, accessed 2026-10-24)
+- "After the initial assignment has been graded (either manually or automatically), the student's score designates which conditional item(s) they are assigned as a learning path." (same URL, accessed 2026-10-24)
+- "Currently Mastery Paths does not support association with outcomes." (same URL, accessed 2026-10-24)
+- "Files, External URLs, and External Tool module items cannot be used as conditional items in Mastery Paths." (same URL, accessed 2026-10-24)
+- "Graded assignments, graded discussions, or graded quizzes may be used as the source content for a Mastery Path. A student's source content score determines which conditional item(s) they are assigned." (same URL, accessed 2026-10-24)
+
+## E2 Interfaces evidence
+- "Canvas, like many LMSs, supports loading external resources inline using the IMS LTI standard ... Canvas supports some additional integration points using LTI ... and by leveraging LTI Advantage services." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- "External tool assignments integrations: This type of integration is part of the LTI 1.1 Outcomes Service or LTI 1.3 Assignment and Grade Services and allows external services to synchronize grades, and other assignment details." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- "LTI 1.1 Tool's placements can be configured using LTI configuration XML as specified in the IMS Common Cartridge specification, or using the external tools API." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- "Score API for 1EdTech (IMS) Assignment and Grade Services" and "POST /api/lti/courses/:course_id/line_items/:line_item_id/scores ... Create a new Result from the score params." (https://canvas.instructure.com/doc/api/score.html, accessed 2026-10-24)
+- "Developer keys are OAuth2 client ID and secret pairs stored in Canvas that allow third-party applications to request access to Canvas API endpoints via the OAuth2 flow." (https://canvas.instructure.com/doc/api/file.developer_keys.html, accessed 2026-10-24)
+- "Canvas has implemented a small piece of xAPI (Tin Can API) ... An external tool can ask for an xAPI callback URL, and then POST back an interaction activity to Canvas. This will update the activity time for the user in Canvas, and add a page view for that tool." (https://canvas.instructure.com/doc/api/file.xapi.html, accessed 2026-10-24)
+- The Canvas Data Services documentation index lists Caliper event pages under "Caliper IMS 1.1" (https://canvas.instructure.com/doc/api/file.data_service_introduction.html, accessed 2026-10-24); the same page asks: "How often are instructors relying on external assessment content or re-using assessment content (imported via QTI) when building their assessments?"
+- LTI Advantage services and 1EdTech Platform Notification Service and Asset Processor services are listed in the developer key permissions table: "Allows use of the 1EdTech Platform Notification Service." and "Allows use of the Asset Service (part of the 1EdTech Asset Processor specification)." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- Certification: not checked (1EdTech directory not queried). No vendor statement about certification was found on the pages opened.
+
+## E3 Learner model evidence
+- Outcome result object: "// A student's result for an outcome ... "score": 6, ... "links": {"user":"3","learning_outcome":"97","alignment":"53"}, // score's percent of maximum points possible for outcome, scaled to reflect any // custom mastery levels that differ from the learning outcome "percent": 0.65" (https://canvas.instructure.com/doc/api/outcome_results.html, accessed 2026-10-24)
+- "// The rollup score for the outcome, based on the student alignment scores // related to the outcome." (https://canvas.instructure.com/doc/api/outcome_results.html, accessed 2026-10-24)
+- "Gets the outcome results for users and outcomes in the specified context." and "If true, results that are hidden from the learning mastery gradebook and student rollup" (https://canvas.instructure.com/doc/api/outcome_results.html, accessed 2026-10-24)
+- Endpoints documented on the Outcome Results page are read or calculation endpoints (OutcomeResultsController#index, #rollups, #contributing_scores, #mastery_distribution, #enqueue_outcome_rollup_calculation; the one path line shown is "GET /api/v1/courses/:course_id/outcomes/:outcome_id/contributing_scores"). No endpoint for an external tool to create an outcome result was found on this page. (https://canvas.instructure.com/doc/api/outcome_results.html, accessed 2026-10-24)
+- "Returns outcome alignments for a student or assignment in a course." (https://canvas.instructure.com/doc/api/outcomes.html, accessed 2026-10-24)
+- The LTI Advantage permission table lists grade-related write scopes only: "Can create and update submission results for assignments associated with the tool Allows use of the LTI Advantage Score API https://purl.imsglobal.org/spec/lti-ags/scope/score" (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- Score object fields written by a tool: "scoreGiven", "scoreMaximum", "comment", "activityProgress", "gradingProgress", "submission" (https://canvas.instructure.com/doc/api/score.html, accessed 2026-10-24)
+- "Currently Mastery Paths does not support association with outcomes." (https://community.instructure.com/en/kb/articles/660914-how-do-i-use-mastery-paths-in-course-modules, accessed 2026-10-24)
+
+## E4 Data protection evidence
+- "By scoping the tokens, Canvas allows root account administrators to manage the specific API endpoints that tokens issued from a developer key have access to." (https://canvas.instructure.com/doc/api/file.developer_keys.html, accessed 2026-10-24)
+- "Developer key scopes allow root account administrators to restrict the tokens issued from developer keys to a subset of Canvas API endpoints in their account. Developer keys may be scoped or unscoped. Unscoped keys will have access to all Canvas resources available to the authorizing user." (same URL, accessed 2026-10-24)
+- "When a client makes any API request, Canvas will verify the requested endpoint's scope has been granted by the account administrator to the developer key of the request's access token. If the requested endpoint's scope has not been granted Canvas will respond with 401 Unauthorized." (same URL, accessed 2026-10-24)
+- "When setting up Developer Keys, the section "LTI Advantage Services" allows you to enable or disable permissions for access via that developer key." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- LTI tool configuration field privacy_level: "What level of user information to send to the external tool. Setting this to "name_only" will include fields that contain the user's name and sourcedid in the launch claims. "email_only" will include only the user's email. "public" includes all fields from "name_only", "email_only", and fields like the user's picture. "anonymous" will not include any of these fields. Note that the "sub" claim containing the user's ID is always included." (https://canvas.instructure.com/doc/api/file.lti_dev_key_config.html, accessed 2026-10-24)
+
+## E5 Third-party tools evidence
+- "These tools can be deployed on a course or account level. Once configured, tools can be surfaced as links in course modules or used to deliver custom assignment experiences." (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+- "Join 1000+ edtech industry partners gaining access to the right education users at 8k+ institutions." (https://www.instructure.com/partners, accessed 2026-10-24)
+- EduAppCenter, described on its home page as "An open LTI™ app collection." (https://www.eduappcenter.com/, accessed 2026-10-24). Its public listing API returned app records including "name":"ALEKS", "name":"Apex Learning", "name":"Amplify", "name":"Assignment Review by FeedbackFruits" and "name":"Atomic Assessments" (https://www.eduappcenter.com/api/v1/lti_apps, accessed 2026-10-24). The listing does not state on its face whether each app is LTI-launched inside Canvas or a link.
+- Example placements: "Creating a Canvas assignment that launches the student to a custom assessment that can be automatically graded by the tool and synced with the Canvas Gradebook" (https://canvas.instructure.com/doc/api/file.tools_intro.html, accessed 2026-10-24)
+
+## Gaps
+- https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-view-the-Learning-Mastery-Gradebook-in-a-course/ta-p/775 returned HTTP 404 ("Something has gone wrong."). The Learning Mastery Gradebook help article was not opened; a site search on community.instructure.com returned a Cloudflare 403.
+- https://www.instructure.com/partners/partner-listing, https://www.instructure.com/partners/edtech-collective and https://www.instructure.com/canvas/integrations returned 404.
+- https://canvas.instructure.com/doc/api/file.oneroster.html returned 404; no Canvas OneRoster page was opened.
+- No Canvas documentation was found that describes an external tool writing outcome (mastery) results, as distinct from scores, into Canvas; the developer portal at developerdocs.instructure.com was not searched separately.
+- The EduAppCenter web listing is rendered client-side; app detail pages were not opened.
